@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
-export const Button = () => {
-  return <button onClick={() => alert("boop")}>Boop</button>;
+export const Button = ({ children }: { children: React.ReactElement | string }, { ...props }: { props: any }) => {
+  return <button {...props} className="btn">{children}</button>;
 };
