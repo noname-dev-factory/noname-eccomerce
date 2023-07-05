@@ -1,8 +1,14 @@
-import { Button } from "ui";
-import { Navbar } from "../components/Navbar";
+'use client'
+import { useEffect } from 'react';
+import { Navbar } from '../components/Navbar';
 import '../globals.css';
 
 export default function Page() {
+  useEffect(() => {
+    const clerkSecretKey = process.env.NEXT_PUBLIC_HEY;
+    console.log('CLERK_SECRET_KEY:', clerkSecretKey);
+  }, []);
+
   return (
     <>
       <Navbar />

@@ -1,21 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "build": "turbo build",
+    "dev": "dotenv -- turbo dev",
+    "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
-    "autoprefixer": "^10.4.14",
-    "daisyui": "^3.1.1",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
-    "postcss": "^8.4.24",
     "prettier": "^2.5.1",
-    "tailwindcss": "^3.3.2",
     "turbo": "^1.9.7"
+  
   },
   "name": "noname-ecommerce",
   "packageManager": "yarn@1.22.19",
@@ -24,7 +21,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "gitmoji-cli": "^8.3.0",
-    "global": "^4.4.0"
+    "dotenv-cli": "*"
   }
 }
