@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 import {
     SignedIn,
@@ -5,13 +6,24 @@ import {
     SignInButton,
     UserButton,
 } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
+    const [stickyClass, setStickyClass] = useState("");
     const empty: boolean = false;
+
+    function stickNavbar() {
+        let windowHeight = window.scrollY;
+        windowHeight > 300 ? setStickyClass("fixed top-0 z-50") : setStickyClass("relative");
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", stickNavbar);
+    }, []);
 
     return (
         <>
-            <div className="navbar top-0 z-50">
+            <div data-theme="dark" className={`navbar ${stickyClass} transition-all`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -66,7 +78,7 @@ export const Navbar = () => {
                         <li tabIndex={0}>
                             <div className="dropdown dropdown-hover p-0">
                                 <Link className="mx-4 my-2" tabIndex={0} href={"/products"}>Products</Link>
-                                <ul tabIndex={0} className="dropdown-content relative top-10 z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <ul tabIndex={0} className="dropdown-content relative top-9 z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                     <li><Link href={"/products/caps"}>Caps</Link></li>
                                     <li><Link href={"/products/shirts"}>Shirts</Link></li>
                                     <li><Link href={"/products/hoodies"}>Hoodie</Link></li>
@@ -81,7 +93,6 @@ export const Navbar = () => {
                 <div className="navbar-end">
                     <button className="btn btn-ghost btn-circle">
                         <SignedIn>
-                            {/* Mount the UserButton component */}
                             <UserButton afterSignOutUrl="/" />
                         </SignedIn>
                         <SignedOut>
